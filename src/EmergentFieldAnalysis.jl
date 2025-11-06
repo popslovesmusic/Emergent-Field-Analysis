@@ -4,6 +4,7 @@ include("metrics/basic_stats.jl")
 include("routing/routing_agent.jl")
 include("qc/qc_sampler.jl")
 include("llm/llm_contract.jl")
+include("llm/pre_run_template.jl")
 include("logging/jsonl_logger.jl")
 include("policy/adaptive_state.jl")
 include("llm/llm_reply.jl")
@@ -12,6 +13,7 @@ using .BasicStats
 using .RoutingAgent
 using .QCSampler
 using .LLMContract
+using .PreRunTemplate
 using .JSONLLogger
 using .AdaptiveState
 using .LLMReply

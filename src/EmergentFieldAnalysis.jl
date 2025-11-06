@@ -2,8 +2,10 @@ module EmergentFieldAnalysis
 
 include("metrics/basic_stats.jl")
 include("routing/routing_agent.jl")
+include("qc/qc_sampler.jl")
 using .BasicStats
 using .RoutingAgent
+using .QCSampler
 
 """
 run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict) -> Dict
@@ -21,9 +23,11 @@ function run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict)
         metrics[name] = Dict{Symbol,Any}(field_basic_stats(arr))
     end
     route = routing_decision(metrics)
+    qc = qc_sample_flags(metrics)
     return Dict(
         :routing => route,
-        :metrics => metrics
+        :metrics => metrics,
+        :qc_sample_flags => qc
     )
 end
 

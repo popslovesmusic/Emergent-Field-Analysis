@@ -1,7 +1,9 @@
 module EmergentFieldAnalysis
 
 include("metrics/basic_stats.jl")
+include("routing/routing_agent.jl")
 using .BasicStats
+using .RoutingAgent
 
 """
 run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict) -> Dict
@@ -18,8 +20,9 @@ function run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict)
     for (name, arr) in fields
         metrics[name] = Dict{Symbol,Any}(field_basic_stats(arr))
     end
+    route = routing_decision(metrics)
     return Dict(
-        :routing => :undecided,
+        :routing => route,
         :metrics => metrics
     )
 end

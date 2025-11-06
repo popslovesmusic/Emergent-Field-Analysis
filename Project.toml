@@ -3,5 +3,8 @@ uuid = "22799678-7650-4210-8467-41f59daee5ab"
 authors = ["James Hoskins"]
 version = "0.1.0"
 
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+
 [compat]
 julia = "1.9"

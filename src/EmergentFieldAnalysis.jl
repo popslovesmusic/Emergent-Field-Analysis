@@ -3,9 +3,11 @@ module EmergentFieldAnalysis
 include("metrics/basic_stats.jl")
 include("routing/routing_agent.jl")
 include("qc/qc_sampler.jl")
+include("llm/llm_contract.jl")
 using .BasicStats
 using .RoutingAgent
 using .QCSampler
+using .LLMContract
 
 """
 run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict) -> Dict
@@ -27,7 +29,8 @@ function run_analysis(fields::Vector{Tuple{Symbol,AbstractArray}}, meta::Dict)
     return Dict(
         :routing => route,
         :metrics => metrics,
-        :qc_sample_flags => qc
+        :qc_sample_flags => qc,
+        :llm_payload => build_post_run_review_payload(meta["run_id"], meta["engine_type"], metrics, route)
     )
 end
 

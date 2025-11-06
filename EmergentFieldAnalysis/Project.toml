@@ -1,0 +1,7 @@
+name = "EmergentFieldAnalysis"
+uuid = "22799678-7650-4210-8467-41f59daee5ab"
+authors = ["James Hoskins"]
+version = "0.1.0"
+
+[compat]
+julia = "1.9"
